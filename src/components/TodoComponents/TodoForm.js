@@ -17,12 +17,18 @@ class TodoForm extends React.Component {
         event.preventDefault();
         this.props.addTask(this.state.newTask);
         this.setState({newTask: ""})
+    };
+    handleKeyDown = event => {
+        if(event.key === "Enter") {
+            this.props.addTask(this.state.newTask);
+            this.setState({newTask: ""})
+        };
     }
 
     render() {
         return (
         <form onSubmit={this.handleSubmit}>
-            <input type="text" name="task" value={this.state.newTask} onChange={this.handleChange} />
+            <input type="text" name="task" value={this.state.newTask} onChange={this.handleChange} onKeyDown={this.handleKeyDown} />
             <button>Add Task</button>
         </form>
         );
